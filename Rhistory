@@ -1,0 +1,505 @@
+########################33PARTE 2
+Calificados_BC <- read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Predicciones_buro_productivo_20230630.csv")
+Calificados_CC<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Predicciones_circulo_productivo_20230630.csv")
+base<-Calificados_BC
+base$Numero.de.cliente
+decil <- read_excel("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/resultadosBuroProductivoSep23 5.xlsx",sheet = "Decil_Nuevo")
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(readxl)
+library(stringr)
+library(haven)
+# Cargar librería
+library(textTinyR)
+########################33PARTE 2
+Calificados_BC <- read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Predicciones_buro_productivo_20230630.csv")
+Calificados_CC<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Predicciones_circulo_productivo_20230630.csv")
+base<-Calificados_BC
+base$Numero.de.cliente
+decil <- read_excel("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/resultadosBuroProductivoSep23 5.xlsx",sheet = "Decil_Nuevo")
+summary(base$Distribucion)
+names(base)
+a <- c()
+for(i in 1:dim(base)[1])
+{
+if(base$Distribucion[i] <= as.numeric(decil[1,2]))
+{
+a[i] <- "a) 1"
+}
+if(base$Distribucion[i] > as.numeric(decil[1,2]))
+{
+a[i] <- "b) 2"
+}
+if(base$Distribucion[i] > as.numeric(decil[2,2]))
+{
+a[i] <- "c) 3"
+}
+if(base$Distribucion[i] > as.numeric(decil[3,2]))
+{
+a[i] <- "d) 4"
+}
+if(base$Distribucion[i] > as.numeric(decil[4,2]))
+{
+a[i] <- "e) 5"
+}
+if(base$Distribucion[i] > as.numeric(decil[5,2]))
+{
+a[i] <- "f) 6"
+}
+if(base$Distribucion[i] > as.numeric(decil[6,2]))
+{
+a[i] <- "g) 7"
+}
+if(base$Distribucion[i] > as.numeric(decil[7,2]))
+{
+a[i] <- "h) 8"
+}
+if(base$Distribucion[i] > as.numeric(decil[8,2]))
+{
+a[i] <- "i) 9"
+}
+if(base$Distribucion[i] > as.numeric(decil[9,2]))
+{
+a[i] <- "j) 10"
+}
+}
+table(a)
+base$Decil <- a
+base %>%
+ggplot(aes(x= Distribucion,
+fill = Decil)) +
+geom_histogram(alpha = 0.35,col = "blue3")
+Buro_Credito<- base
+Base067<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/067_Agosto2023_Mayo2023.csv")
+Base067 <- Base067 %>%
+unite("llave", Solicitud, Folio_Buro, sep = "-")
+####Cruzar la base 067
+library(tidyr)
+Base067 <- Base067 %>%
+unite("llave", Solicitud, Folio_Buro, sep = "-")
+Base067<-select(Base067, -X)
+Productivo_BC <- Buro_Credito %>%
+left_join(Base067, by = c("llave_x"="llave"))
+sum(is.na(Productivo_BC$Sucursal))
+###Identificar los de agosto 2023 a enero 2024
+Agosto_Enero_BC<- Productivo_BC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2023-08-01") & Fecha_Consulta_Buro<=as.Date("2024-01-31"))
+###FEBRERO A MAYO
+Febrero_Mayo<- Productivo_BC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2024-02-01") & Fecha_Consulta_Buro<=as.Date("2024-05-31"))
+###FEBRERO A MAYO
+Febrero_Mayo_BC<- Productivo_BC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2024-02-01") & Fecha_Consulta_Buro<=as.Date("2024-05-31"))
+Atraso_mejoradoOD<-read_csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Atraso_Mejorado_OD.csv")
+load("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/AtrasoMejorado_SIBA_OD.RData")
+Atraso_mejoradoOD <- select(Atraso_mejoradoOD, c(1:443))
+Atraso_sin_columnas <- Atraso_mejoradoOD[, -c(1:5)]
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+Atraso_mejoradoOD$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+AtrasoMaxOD<-select(Atraso_mejoradoOD,Credito,Max_Dias_Atraso)
+atraso_total <- select(atraso_total, c(1:443))
+Atraso_sin_columnas <- atraso_total[, -c(1:5)]
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+atraso_total$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+AtrasoMax<-select(atraso_total,SocioRea,Max_Dias_Atraso)
+Agosto_Enero$Credito
+table(Agosto_Enero$FOLIO)
+##Cruce
+# Primera unión con AtrasoMaxOD
+str(Agosto_Enero$Credito)
+str(AtrasoMaxOD$Credito)
+##Cruce
+# Primera unión con AtrasoMaxOD
+str(Agosto_Enero_BC$Credito)
+str(AtrasoMaxOD$Credito)
+Agosto_Enero <- Agosto_Enero %>%
+mutate(Credito = str_pad(Credito, width = 15, side = "left", pad = "0"))
+Base_Cruce <- left_join(Agosto_Enero, AtrasoMaxOD, by = c("Credito"="Credito"))
+Agosto_Enero_BC <- Agosto_Enero_BC %>%
+mutate(Credito = str_pad(Credito, width = 15, side = "left", pad = "0"))
+Base_Cruce <- left_join(Agosto_Enero_BC, AtrasoMaxOD, by = c("Credito"="Credito"))
+sum(is.na(Base_Cruce$Max_Dias_Atraso.y))
+sum(is.na(Base_Cruce$Max_Dias_Atraso.x))
+write.csv(Base_Cruce, "C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Agosto_Enero_BC.csv")
+Atraso_mejoradoOD<-read_csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Atraso_Mejorado_OD.csv")
+load("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/AtrasoMejorado_SIBA_OD.RData")
+Atraso_sin_columnas <- Atraso_mejoradoOD[, -c(1:5)]
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+Atraso_mejoradoOD$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+AtrasoMaxOD<-select(Atraso_mejoradoOD,Credito,Max_Dias_Atraso)
+Atraso_sin_columnas <- atraso_total[, -c(1:5)]
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+atraso_total$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+AtrasoMax<-select(atraso_total,SocioRea,Max_Dias_Atraso)
+Febrero_Mayo$Credito
+table(Febrero_Mayo$Credito)
+##Cruce
+# Primera unión con AtrasoMaxOD
+str(Febrero_Mayo$Credito)
+str(AtrasoMaxOD$Credito)
+Febrero_Mayo_BC <- Febrero_Mayo_BC %>%
+mutate(Credito = str_pad(Credito, width = 15, side = "left", pad = "0"))
+Base_Cruce_1 <- left_join(Febrero_Mayo_BC, AtrasoMaxOD, by = c("Credito"="Credito"))
+sum(is.na(Base_Cruce_1$Max_Dias_Atraso.x))
+write.csv(Base_Cruce_1, "C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/febrero_Mayo_BC.csv")
+Base067<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/067_Agosto2023_Mayo2023.csv")
+Base067 <- Base067 %>%
+unite("llave", Solicitud, Folio_Buro, sep = "-")
+Base067<-select(Base067, -X)
+Productivo_CC <- Circulo_Credito %>%
+left_join(Base067, by = c("llave_x"="llave"))
+Calificados_CC<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Predicciones_circulo_productivo_20230630.csv")
+base<-Calificados_CC
+base$Numero.de.cliente
+decil <- read_excel("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/resultadosCirculoProductivoSep23 5.xlsx",sheet = "Decil_Nuevo")
+summary(base$Distribucion)
+names(base)
+a <- c()
+for(i in 1:dim(base)[1])
+{
+if(base$Distribucion[i] <= as.numeric(decil[1,2]))
+{
+a[i] <- "a) 1"
+}
+if(base$Distribucion[i] > as.numeric(decil[1,2]))
+{
+a[i] <- "b) 2"
+}
+if(base$Distribucion[i] > as.numeric(decil[2,2]))
+{
+a[i] <- "c) 3"
+}
+if(base$Distribucion[i] > as.numeric(decil[3,2]))
+{
+a[i] <- "d) 4"
+}
+if(base$Distribucion[i] > as.numeric(decil[4,2]))
+{
+a[i] <- "e) 5"
+}
+if(base$Distribucion[i] > as.numeric(decil[5,2]))
+{
+a[i] <- "f) 6"
+}
+if(base$Distribucion[i] > as.numeric(decil[6,2]))
+{
+a[i] <- "g) 7"
+}
+if(base$Distribucion[i] > as.numeric(decil[7,2]))
+{
+a[i] <- "h) 8"
+}
+if(base$Distribucion[i] > as.numeric(decil[8,2]))
+{
+a[i] <- "i) 9"
+}
+if(base$Distribucion[i] > as.numeric(decil[9,2]))
+{
+a[i] <- "j) 10"
+}
+}
+table(a)
+base$Decil <- a
+base %>%
+ggplot(aes(x= Distribucion,
+fill = Decil)) +
+geom_histogram(alpha = 0.35,col = "blue3")
+Circulo_Credito<- base
+####Cruzar la base 067
+library(tidyr)
+Base067<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/067_Agosto2023_Mayo2023.csv")
+Base067 <- Base067 %>%
+unite("llave", Solicitud, Folio_Buro, sep = "-")
+Base067<-select(Base067, -X)
+Productivo_BC <- Buro_Credito %>%
+left_join(Base067, by = c("llave_x"="llave"))
+sum(is.na(Productivo_BC$Sucursal))
+###Identificar los de agosto 2023 a enero 2024
+Agosto_Enero_CC<- Productivo_BC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2023-08-01") & Fecha_Consulta_Buro<=as.Date("2024-01-31"))
+###FEBRERO A MAYO
+Febrero_Mayo_CC<- Productivo_BC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2024-02-01") & Fecha_Consulta_Buro<=as.Date("2024-05-31"))
+Calificados_CC<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Predicciones_circulo_productivo_20230630.csv")
+base<-Calificados_CC
+base$Numero.de.cliente
+decil <- read_excel("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/resultadosCirculoProductivoSep23 5.xlsx",sheet = "Decil_Nuevo")
+summary(base$Distribucion)
+names(base)
+a <- c()
+for(i in 1:dim(base)[1])
+Calificados_CC<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Predicciones_circulo_productivo_20230630.csv")
+Calificados_CC<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Predicciones_circulo_productivo_20230630.csv")
+base<-Calificados_CC
+base$Numero.de.cliente
+decil <- read_excel("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/resultadosCirculoProductivoSep23 5.xlsx",sheet = "Decil_Nuevo")
+summary(base$Distribucion)
+names(base)
+a <- c()
+for(i in 1:dim(base)[1])
+{
+if(base$Distribucion[i] <= as.numeric(decil[1,2]))
+{
+a[i] <- "a) 1"
+}
+if(base$Distribucion[i] > as.numeric(decil[1,2]))
+{
+a[i] <- "b) 2"
+}
+if(base$Distribucion[i] > as.numeric(decil[2,2]))
+{
+a[i] <- "c) 3"
+}
+if(base$Distribucion[i] > as.numeric(decil[3,2]))
+{
+a[i] <- "d) 4"
+}
+if(base$Distribucion[i] > as.numeric(decil[4,2]))
+{
+a[i] <- "e) 5"
+}
+if(base$Distribucion[i] > as.numeric(decil[5,2]))
+{
+a[i] <- "f) 6"
+}
+if(base$Distribucion[i] > as.numeric(decil[6,2]))
+{
+a[i] <- "g) 7"
+}
+if(base$Distribucion[i] > as.numeric(decil[7,2]))
+{
+a[i] <- "h) 8"
+}
+if(base$Distribucion[i] > as.numeric(decil[8,2]))
+{
+a[i] <- "i) 9"
+}
+if(base$Distribucion[i] > as.numeric(decil[9,2]))
+{
+a[i] <- "j) 10"
+}
+}
+table(a)
+base$Decil <- a
+base %>%
+ggplot(aes(x= Distribucion,
+fill = Decil)) +
+geom_histogram(alpha = 0.35,col = "blue3")
+Circulo_Credito<- base
+Base067<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/067_Agosto2023_Mayo2023.csv")
+Base067 <- Base067 %>%
+unite("llave", Solicitud, Folio_Buro, sep = "-")
+Base067<-select(Base067, -X)
+Productivo_CC <- Circulo_Credito %>%
+left_join(Base067, by = c("llave_x"="llave"))
+sum(is.na(Productivo_CC$Sucursal))
+###Identificar los de febrero 2024 a mayo 2024
+Febrero_Mayo<- Productivo_CC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2024-02-01") & Fecha_Consulta_Buro<=as.Date("2024-05-31"))
+###Identificar los de febrero 2024 a mayo 2024
+Febrero_Mayo_CC<- Productivo_CC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2024-02-01") & Fecha_Consulta_Buro<=as.Date("2024-05-31"))
+Agosto_Enero_cC<- Productivo_CC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2023-08-01") & Fecha_Consulta_Buro<=as.Date("2024-01-31"))
+Agosto_Enero_CC<- Productivo_CC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2023-08-01") & Fecha_Consulta_Buro<=as.Date("2024-01-31"))
+Atraso_mejoradoOD<-read_csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Atraso_Mejorado_OD.csv")
+load("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/AtrasoMejorado_SIBA_OD.RData")
+Atraso_sin_columnas <- Atraso_mejoradoOD[, -c(1:5)]
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+Atraso_mejoradoOD$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+AtrasoMaxOD<-select(Atraso_mejoradoOD,Credito,Max_Dias_Atraso)
+Atraso_sin_columnas <- atraso_total[, -c(1:5)]
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+atraso_total$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+AtrasoMax<-select(atraso_total,SocioRea,Max_Dias_Atraso)
+Febrero_Mayo$Credito
+table(Febrero_Mayo$Credito)
+##Cruce
+# Primera unión con AtrasoMaxOD
+str(Febrero_Mayo$Credito)
+str(AtrasoMaxOD$Credito)
+Febrero_Mayo_CC <- Febrero_Mayo_CC %>%
+mutate(Credito = str_pad(Credito, width = 15, side = "left", pad = "0"))
+Base_Cruce_1 <- left_join(Febrero_Mayo_CC, AtrasoMaxOD, by = c("Credito"="Credito"))
+sum(is.na(Base_Cruce_1$Max_Dias_Atraso.x))
+write.csv(Base_Cruce_1, "C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/febrero_Mayo_CC.csv")
+Atraso_mejoradoOD<-read_csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Atraso_Mejorado_OD.csv")
+load("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/AtrasoMejorado_SIBA_OD.RData")
+Buro_Credito
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+Atraso_mejoradoOD$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+Calificados_CC<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Predicciones_circulo_productivo_20230630.csv")
+base<-Calificados_CC
+base$Numero.de.cliente
+decil <- read_excel("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/resultadosCirculoProductivoSep23 5.xlsx",sheet = "Decil_Nuevo")
+summary(base$Distribucion)
+names(base)
+a <- c()
+for(i in 1:dim(base)[1])
+{
+if(base$Distribucion[i] <= as.numeric(decil[1,2]))
+{
+a[i] <- "a) 1"
+}
+if(base$Distribucion[i] > as.numeric(decil[1,2]))
+{
+a[i] <- "b) 2"
+}
+if(base$Distribucion[i] > as.numeric(decil[2,2]))
+{
+a[i] <- "c) 3"
+}
+if(base$Distribucion[i] > as.numeric(decil[3,2]))
+{
+a[i] <- "d) 4"
+}
+if(base$Distribucion[i] > as.numeric(decil[4,2]))
+{
+a[i] <- "e) 5"
+}
+if(base$Distribucion[i] > as.numeric(decil[5,2]))
+{
+a[i] <- "f) 6"
+}
+if(base$Distribucion[i] > as.numeric(decil[6,2]))
+{
+a[i] <- "g) 7"
+}
+if(base$Distribucion[i] > as.numeric(decil[7,2]))
+{
+a[i] <- "h) 8"
+}
+if(base$Distribucion[i] > as.numeric(decil[8,2]))
+{
+a[i] <- "i) 9"
+}
+if(base$Distribucion[i] > as.numeric(decil[9,2]))
+{
+a[i] <- "j) 10"
+}
+}
+table(a)
+base$Decil <- a
+base %>%
+ggplot(aes(x= Distribucion,
+fill = Decil)) +
+geom_histogram(alpha = 0.35,col = "blue3")
+Circulo_Credito<- base
+###Identificar los de agosto 2023 a enero 2024
+Agosto_Enero_CC<- Productivo_BC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2023-08-01") & Fecha_Consulta_Buro<=as.Date("2024-01-31"))
+Base067<-read.csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/067_Agosto2023_Mayo2023.csv")
+Base067 <- Base067 %>%
+unite("llave", Solicitud, Folio_Buro, sep = "-")
+Base067<-select(Base067, -X)
+Productivo_CC <- Circulo_Credito %>%
+left_join(Base067, by = c("llave_x"="llave"))
+sum(is.na(Productivo_CC$Sucursal))
+Agosto_Enero_CC<- Productivo_CC %>%
+filter(Fecha_Consulta_Buro>=as.Date("2023-08-01") & Fecha_Consulta_Buro<=as.Date("2024-01-31"))
+Atraso_mejoradoOD<-read_csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Atraso_Mejorado_OD.csv")
+load("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/AtrasoMejorado_SIBA_OD.RData")
+Buro_Credito
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+Atraso_mejoradoOD$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+AtrasoMaxOD<-select(Atraso_mejoradoOD,Credito,Max_Dias_Atraso)
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+atraso_total$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+Agosto_Enero$Credito
+table(Agosto_Enero$FOLIO)
+##Cruce
+# Primera unión con AtrasoMaxOD
+str(Agosto_Enero_BC$Credito)
+str(AtrasoMaxOD$Credito)
+Agosto_Enero_CC <- Agosto_Enero_CC %>%
+mutate(Credito = str_pad(Credito, width = 15, side = "left", pad = "0"))
+Base_Cruce <- left_join(Agosto_Enero_CC, AtrasoMaxOD, by = c("Credito"="Credito"))
+Base_Cruce <- left_join(Agosto_Enero_CC, AtrasoMaxOD, by = c("Credito"="Credito"))
+Atraso_mejoradoOD<-read_csv("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Atraso_Mejorado_OD.csv")
+load("C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/AtrasoMejorado_SIBA_OD.RData")
+Atraso_mejoradoOD <- select(Atraso_mejoradoOD, c(1:443))
+Atraso_sin_columnas <- Atraso_mejoradoOD[, -c(1:5)]
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+Atraso_mejoradoOD$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+AtrasoMaxOD<-select(Atraso_mejoradoOD,Credito,Max_Dias_Atraso)
+atraso_total <- select(atraso_total, c(1:443))
+Atraso_sin_columnas <- atraso_total[, -c(1:5)]
+# Calcular el máximo de los días de atraso sin considerar las columnas excluidas
+atraso_total$Max_Dias_Atraso <- do.call(pmax, c(Atraso_sin_columnas, na.rm = TRUE))
+AtrasoMax<-select(atraso_total,SocioRea,Max_Dias_Atraso)
+Base_Cruce <- left_join(Agosto_Enero_CC, AtrasoMaxOD, by = c("Credito"="Credito"))
+sum(is.na(Base_Cruce$Max_Dias_Atraso.x))
+table(Base_Cruce$Max_Dias_Atraso.x)
+View(Base_Cruce)
+write.csv(Base_Cruce, "C:/Users/bc.mgutierrez/Documents/Base 067 power BI/05-11-2024/Agosto a Mayo/Agosto_Enero_CC.csv")
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(readxl)
+library(stringr)
+library(haven)
+Pagos_2022 <- read.csv("C:/Users/bc.mgutierrez/Documents/Capacidad_Pago/Productivo_pagos2022.csv")
+Pagos_2023 <- read.csv("C:/Users/bc.mgutierrez/Documents/Capacidad_Pago/Productivo_pagos2023.csv")
+Pagos_2024 <- read.csv("C:/Users/bc.mgutierrez/Documents/Capacidad_Pago/Productivo_pagos2024.csv")
+Pagos_2022_2024 <- rbind(Pagos_2023, Pagos_2023, Pagos_2024)
+Pagos_2022 <- read.csv("C:/Users/bc.mgutierrez/Documents/Capacidad_Pago/Productivo_pagos2022.csv")
+Pagos_2023 <- read.csv("C:/Users/bc.mgutierrez/Documents/Capacidad_Pago/Productivo_pagos2023.csv")
+Pagos_2024 <- read.csv("C:/Users/bc.mgutierrez/Documents/Capacidad_Pago/Productivo_pagos2024.csv")
+Pagos_2022_2024 <- rbind(Pagos_2022, Pagos_2023, Pagos_2024)
+Pagos_2023_2024 <- rbind(Pagos_2023, Pagos_2024)
+rm(Pagos_2022,Pagos_2023,Pagos_2024)
+Pagos_2022_2024$Monto_Pagado
+Pagos_2022_2024$Monto_Pagado <- apply(Pagos_2022_2024[, columnas], 1, function(row) quantile(row, 0.85, na.rm = TRUE))
+Pagos_2022_2024$Monto_Pagado_85 <- quantile(Pagos_2022_2024$Monto_Pagado, 0.85, na.rm = TRUE)
+table(Pagos_2022_2024$Monto_Pagado_85)
+View(Pagos_2022_2024)
+Pagos_2022_2024$Monto_Pagado <- apply(Pagos_2022_2024[, columnas], 1, function(row) quantile(row, 0.85, na.rm = TRUE))
+Pagos_2022_2024$Monto_Pagado_85 <- apply(Pagos_2022_2024$Monto_Pagado, 1, function(row) quantile(row, 0.85, na.rm = TRUE))
+Pagos_2022_2024$Monto_Pagado_85 <- quantile(Pagos_2022_2024$Monto_Pagado, 0.85, na.rm = TRUE)
+View(Pagos_2022_2024)
+table(Pagos_2022_2024$Monto_Pagado_85)
+Pagos_2022_2024 <- Pagos_2022_2024 %>%
+group_by(Monto_Pagado) %>%  # Cambia "Grupo" por la columna que define tus grupos
+mutate(Monto_Pagado_85 = quantile(Monto_Pagado, 0.85, na.rm = TRUE))
+View(Pagos_2022_2024)
+Pagos_2022_2024 <- Pagos_2022_2024 %>%
+group_by(No_Credito) %>%  # Cambia "Grupo" por la columna que define tus grupos
+mutate(Monto_Pagado_85 = quantile(Monto_Pagado, 0.85, na.rm = TRUE))
+View(Pagos_2022_2024)
+group_by(No_Cliente) %>%
+summarise(Percentil_85 = quantile(Total_Pagos, 0.85)
+percentil_85 <- Pagos_2022_2024 %>%
+percentil_85 <- Pagos_2022_2024 %>%
+group_by(No_Cliente) %>%
+summarise(Total_Pagos = sum(Monto_Pagado, na.rm = TRUE)) %>%
+summarise(Percentil_85 = quantile(Total_Pagos, 0.85, na.rm = TRUE))
+View(percentil_85)
+percentil_85$Monto_Pagado_85 <- Pagos_2022_2024 %>%
+group_by(No_Cliente) %>%
+summarise(Total_Pagos = sum(Monto_Pagado, na.rm = TRUE)) %>%
+summarise(Percentil_85 = quantile(Total_Pagos, 0.85, na.rm = TRUE))
+View(percentil_85)
+Pagos_2022_2024$Monto_Pagado_85 <- Pagos_2022_2024 %>%
+group_by(No_Cliente) %>%
+summarise(Total_Pagos = sum(Monto_Pagado, na.rm = TRUE)) %>%
+summarise(Percentil_85 = quantile(Total_Pagos, 0.85, na.rm = TRUE))
+View(Pagos_2022_2024)
+percentil_85 <- Pagos_2022_2024 %>%
+group_by(No_Cliente) %>%
+summarise(Total_Pagos = sum(Monto_Pagado, na.rm = TRUE)) %>%
+summarise(Percentil_85 = quantile(Total_Pagos, 0.85, na.rm = TRUE))
+View(percentil_85)
+View(percentil_85)
+# Calcular el total de pagos por cliente
+total_por_cliente <- Pagos_2022_2024 %>%
+group_by(No_Cliente) %>%
+summarise(Total_Pagos = sum(Monto_Pagado, na.rm = TRUE))
+# Extraer el valor del percentil 85
+percentil_85_valor <- percentil_85$Percentil_85
+# Añadir una columna que indique si el cliente está por encima o por debajo
+total_por_cliente <- total_por_cliente %>%
+mutate(Grupo = ifelse(Total_Pagos > percentil_85_valor, "Por encima del percentil 85", "Por debajo del percentil 85"))
+# Ver los resultados
+print(total_por_cliente)
