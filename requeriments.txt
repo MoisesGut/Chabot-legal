@@ -1,0 +1,12 @@
+pandas
+numpy
+chromadb
+transformers
+torch
+openpyxl
+fastapi
+uvicorn
+openpyxl
+fastapi 
+uvicorn  
+sentencepiece
