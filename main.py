@@ -24,13 +24,17 @@ app.add_middleware(
 casos_legales = pd.read_excel("/home/moi13/prueba_tecnica/sentencias_pasadas.xlsx")
 
 #Renombrar columnas de forma que sean manejables
-casos_legales.columns.values[0] = "numero"
-casos_legales.columns.values[1] = "relevancia"
-casos_legales.columns.values[2] = "providencia"
-casos_legales.columns.values[3] = "tipo"
-casos_legales.columns.values[4] = "fecha_sentencia"
-casos_legales.columns.values[5] = "tema_subtema"
-casos_legales.columns = casos_legales.columns.str.strip()
+casos_legales.rename(columns={
+    "Relevancia": "relevancia",
+    "Providencia": "providencia",
+    "Tipo": "tipo",
+    "Fecha Sentencia": "fecha",
+    "Sentencia": "sentencia",
+    "Tema - subtema": "tema_subtema",
+    "resuelve": "sentencia",
+    "sintesis": "sintesis"
+}, inplace=True)
+
 
 #Si sintencias esta vacia reemplazar por sentencia
 casos_legales["sintesis"].fillna(casos_legales["sentencia"], inplace=True)
