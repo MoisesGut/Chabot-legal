@@ -82,7 +82,7 @@ class PreguntaRequest(BaseModel):
 #Extraer el id del caso con exprsiones regulares
 def extraer_ids(pregunta):
     ids_encontrados = re.findall(r"T-\d+/\d+", pregunta.upper())
-    print(f"🛠️ IDs extraídos de la pregunta: {ids_encontrados}")
+    print(f"Id extraídos de la pregunta: {ids_encontrados}")
     return ids_encontrados
 
 #Obtener las sentencias desde chroma
@@ -149,13 +149,13 @@ def generar_respuesta_mbart(pregunta):
 
 #Generar respuestas del chatbot
 def responder_pregunta(pregunta):
-    print(f"\n🎯 Pregunta recibida: {pregunta}")  
+    print(f"\nPregunta recibida: {pregunta}")  
 
     #Si es una pregunta de seguimiento se buscan lo ultimos id guardados
     if "de qué se trataron las 3 demandas anteriores" in pregunta.lower():
         ultimos_ids = memoria.obtener_ultimos_ids()
         if not ultimos_ids:
-            return "**No tengo memoria de sentencias anteriores. Pregunta por IDs específicos.**"
+            return "**No tengo memoria de sentencias anteriores. Pregunta por IDs en especifico.**"
         
         contexto = obtener_sentencias(", ".join(ultimos_ids))
         return f"Aquí tienes un resumen de las demandas anteriores:\n\n{contexto}"
@@ -167,7 +167,7 @@ def responder_pregunta(pregunta):
     #Usar el mbart si es otra pregunta
     return generar_respuesta_mbart(pregunta)
 
-# 📌 Endpoint API
+#Endpoint API
 @app.post("/chat")
 def chat_endpoint(request: PreguntaRequest): 
     try:
@@ -180,4 +180,4 @@ def chat_endpoint(request: PreguntaRequest):
 #Mensaje del servidor
 @app.get("/")
 def read_root():
-    return {"mensaje": "Servidor funcionando correctamente 🎯"}
+    return {"mensaje": "Servidor funcionando correctamente"}
