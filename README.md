@@ -29,12 +29,9 @@ Este chatbot está diseñado para responder preguntas sobre sentencias judiciale
 
 ## Instalación y configuración  
 
-### **Clonar el repositorio**  
-```bash
-git clone https://github.com/tu-usuario/chatbot-sentencias.git
-cd chatbot-sentencias
-```
-
+### **IMPORTANTE**  
+El presente reporitorio se uso para hacer una prueba tecnica en azure, por obvias razones no se comparte bases de datos, para compilar el codigo main.py es necesario tener descargado el modelo de IA BART-BASE-5 El cual esta disponible en el repositorio oficial de hugging face o puedes descargarlo directamente desde de tu codigo, además se tienen que instalar las librerias necesariasdisponibles en requeriments.txt, el proyecto consiste en el desarrollo de un back end en python "main.py", un desarrollo de front end "App.js" y "App.css" sin embargo si se cuenta con un equipo de computo con por lo menos 16gb ram y gpu puedes correr el modelo directamente desde tu maquina local usando el codigo "modelo.py", así mismo se realizo un analisis de los datos de la base "Analisis_Sentencias.ipynb" disponible en el repositorio actual.
+ 
 ---
 
 # PRUEBA TÉCNICA
