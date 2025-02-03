@@ -5,16 +5,16 @@ Este chatbot está diseñado para responder preguntas sobre sentencias judiciale
 ---
 
 ## Características principales  
-✅ **Búsqueda de sentencias por ID**  
-✅ **Respuestas en lenguaje natural, sin tecnicismos**  
-✅ **Memoria conversacional**: recuerda sentencias consultadas recientemente  
-✅ **Base de datos vectorial con ChromaDB** para respuestas más precisas  
-✅ **Interfaz de usuario interactiva con React**  
-✅ **Exposición del backend con Ngrok** para pruebas remotas  
+**Búsqueda de sentencias por ID**  
+**Respuestas en lenguaje natural, sin tecnicismos**  
+**Memoria conversacional**: recuerda sentencias consultadas recientemente  
+**Base de datos vectorial con ChromaDB** para respuestas más precisas  
+**Interfaz de usuario interactiva con React**  
+**Exposición del backend con Ngrok** para pruebas remotas  
 
 ---
 
-## 🛠 Tecnologías utilizadas  
+## Tecnologías utilizadas  
 
 | Tecnología | Descripción |
 |------------|------------|
@@ -56,52 +56,52 @@ La siguiente prueba técnica se llevó a cabo en **Azure**, utilizando los sigui
   ![image](https://github.com/user-attachments/assets/c46dfe9a-2e0c-406d-ba4c-22e4434ddfe3)
 -	**File storage (Recursos Compartdios):):** Con la finalidad de compartir recursos con la maquina virtual, entre los que se encuentra los archivos necesario para el modelo de IA generativa.
   ![image](https://github.com/user-attachments/assets/c88ab392-98c6-43ca-9d4e-cf1d67f68a20)
-- **Se creó un grupo de recursos para contene todo lo que ocuparemos.**
+- Se creó un grupo de recursos para contene todo lo que ocuparemos.
  	![image](https://github.com/user-attachments/assets/ad90963b-d167-476d-a60f-2c3b88f8e4ec)
-- **Se creó un entorno optimizado para garantizar su correcta ejecución, asegurando la compatibilidad con los recursos y dependencias necesarias.**
+- Se creó un entorno optimizado para garantizar su correcta ejecución, asegurando la compatibilidad con los recursos y dependencias necesarias.
   ![image](https://github.com/user-attachments/assets/6a651270-c768-46af-a8d6-44a4610cc546)
-- **En la siguiente carpeta tenemos almacenado el modelo de ia generativa y la base de chroma db, así como la base de datos que ocuparemos para entrenar el modelo.**
+- En la siguiente carpeta tenemos almacenado el modelo de ia generativa y la base de chroma db, así como la base de datos que ocuparemos para entrenar el modelo.
   ![image](https://github.com/user-attachments/assets/a514925d-5aa2-49cf-9084-623a809413c8)
   ![image](https://github.com/user-attachments/assets/75fc8b46-0515-4aa3-891f-ec6cd7020136)
-- **Este es el directorio principal del proyecto, donde se tiene main.py el cual es el back end desarrollado en python**
+- Este es el directorio principal del proyecto, donde se tiene main.py el cual es el back end desarrollado en python
   ![image](https://github.com/user-attachments/assets/786518c6-9637-4422-8c6b-8318f0ed5a82)
-- **Dentro de la carpeta frontend tenemos toda la implementacion del front.**
+- Dentro de la carpeta frontend tenemos toda la implementacion del front.
   ![image](https://github.com/user-attachments/assets/cf9c6020-ad4d-458a-995d-854abbacc86e)
-- **La aplicación desarrollada se encuentra principalmente en App.js y App.css.**
-- **Una vez teniendo el desarrollo del back en main.py, desplegamos el servidor en el puerto 8000.**
+- La aplicación desarrollada se encuentra principalmente en App.js y App.css.
+- Una vez teniendo el desarrollo del back en main.py, desplegamos el servidor en el puerto 8000
   ![image](https://github.com/user-attachments/assets/8eaae925-faf1-4c8e-bf1f-2b0027032f1e)
-- **Se levanta el servidor:**
+- Se levanta el servidor:
   ![image](https://github.com/user-attachments/assets/ada6f7e5-9021-4585-aecd-10732fd8f80c)
-- **Posteriormente con ngrok exponemos el puerto para redes publicas.**
+- Posteriormente con ngrok exponemos el puerto para redes publicas.
   ![image](https://github.com/user-attachments/assets/fcbfa0c2-adc7-4db3-a69b-adf6a12aa069)
-- **Desplegamos el front end en el puerto 3000.**
+- Desplegamos el front end en el puerto 3000.
   ![image](https://github.com/user-attachments/assets/39fc8c8b-a523-4d09-aa23-34a22f7eb9f8)
-- **Y exponemos el puerto con ngrok nuevamente.**
+- Y exponemos el puerto con ngrok nuevamente.
   ![image](https://github.com/user-attachments/assets/91cd0fcc-941e-4e13-8fdb-485b2b036662)
-- **Verificamos que el servidor del back end este funcionando correctamente.**
+- Verificamos que el servidor del back end este funcionando correctamente.
   ![image](https://github.com/user-attachments/assets/d66439f6-c72a-489d-aaf8-6ebdee95175e)
-- **Verificamos que el servidor del front end este correcto.**
+- Verificamos que el servidor del front end este correcto.
   ![image](https://github.com/user-attachments/assets/37fbcbce-719c-4a99-8aec-44853f6d7998)
-- **Se hace la pregunta el servidor recibe la pregunta:**
+- Se hace la pregunta el servidor recibe la pregunta:
   ![image](https://github.com/user-attachments/assets/30fa7599-f491-46c0-99a5-39436ffc53d6)
-- **El servidor del back end recibe la pregunta:**
+- El servidor del back end recibe la pregunta:
   ![image](https://github.com/user-attachments/assets/aebb6156-7dcf-4f4b-bfd7-d0eb1f5fd10c)
-- **El servidor recibe la pregunta relacionada con la anterior.**
+- El servidor recibe la pregunta relacionada con la anterior.
   ![image](https://github.com/user-attachments/assets/b9285533-f665-4c81-8160-211e264639fc)
-- **El servidor recibe la pregunta y se implementa un sistema de memoria para que el back end guarde los ids de los casos que le dimos en la pregunta anterior.**
+- El servidor recibe la pregunta y se implementa un sistema de memoria para que el back end guarde los ids de los casos que le dimos en la pregunta anterior.
   ![image](https://github.com/user-attachments/assets/533b0d77-fce3-4632-849b-c7c094d075f2)
-- **NOTA: Estas preguntas tienen una baja latencia porque ya se tienen mapeados lo casos en funciones dentro de python.**
-- **Se envia la pregunta desde el back end.**
+- NOTA: Estas preguntas tienen una baja latencia porque ya se tienen mapeados lo casos en funciones dentro de python.
+- Se envia la pregunta desde el back end.
   ![image](https://github.com/user-attachments/assets/d5a5e62b-c5be-4444-846f-d2f1e3a324f5)
-- **Se agrega una funcion para que el front end muestre mientras recibe la respuesta del back end, en estos casos siguientes la latencia es mayor ya que no tenemos mapeados al 100% estos casos.**
+- Se agrega una funcion para que el front end muestre mientras recibe la respuesta del back end, en estos casos siguientes la latencia es mayor ya que no tenemos mapeados al 100% estos casos.
   ![image](https://github.com/user-attachments/assets/75911199-d4fa-478d-a9c9-3273a0c6fb44)
-- **El servidor recibe la respuesta, aquí dejamos que el modelo haga su trabajo, es una pregunta que no conoce pero trata de responder.**
+- El servidor recibe la respuesta, aquí dejamos que el modelo haga su trabajo, es una pregunta que no conoce pero trata de responder.
   ![image](https://github.com/user-attachments/assets/ca998a9e-a0d6-40b9-b45c-2017d144e09b)
-- **Se envia la pregunta:**
+- Se envia la pregunta:
   ![image](https://github.com/user-attachments/assets/cdd1cfa5-5343-47a7-b022-0e1db187c0fc)
   ![image](https://github.com/user-attachments/assets/37cf594c-0ce0-45f3-940b-ba68013e05f3)
   ![image](https://github.com/user-attachments/assets/f09fdc05-3f8a-4311-945b-3c74633f44c8)
-- **El servidor recibe la pregunta sin conocerla antes:**
+- El servidor recibe la pregunta sin conocerla antes:
   ![image](https://github.com/user-attachments/assets/10085417-2655-4e19-b607-890052758339)
   ![image](https://github.com/user-attachments/assets/a7ca1b17-25d5-4556-8e29-993891394778)
   ![image](https://github.com/user-attachments/assets/df45b8d6-0664-4ad8-9afb-40808519cc56)
