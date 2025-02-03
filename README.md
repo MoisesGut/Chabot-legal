@@ -48,6 +48,27 @@ Gutierrez Carmona Moisés
 ---
 
 **Fecha de Entrega:** 04 de febrero de 2025
+
+# Investigación
+
+**Modelos de IA Generativa**
+
+Este tipo de modelos, sobre todo los basados en arquitecturas de Transformers, han sido importantes en el campo del Procesamiento del Lenguaje Natural. Estos modelos se entrenan a partir de grandes cantidades de datos y son capaces de generar respuestas coherentes y con contexto.
+
+Mbart es una extensión del modelo BART que se ha desarrollado en trabajar en un contexto multilingüe. La versión usada en esta prueba denominada mBart-BASE-5 representa una variante optimizada para 5 idiomas, permitiendo generar textos en múltiples lenguajes con una alta calidad. Este modelo utiliza un proceso de preentrenamiento mediante eliminación de ruido de los datos que permite aprender representaciones lingüísticas robustas. La elección de este modelo para la prueba fue debido a que uno de los 5 idiomas en los que se especializa es el español y es un modelo bastante ligero que no requiere mucha capacidad de computo. [1]
+
+**Bases vectoriales** 
+
+Son estructuras de datos que permiten el almacenamiento y la búsqueda de información a partir de la representación numérica de los datos (vectores). Estas bases facilitan la búsqueda semántica.
+
+Para esta prueba se uso Chroma DB, la cual esta diseñada para integrarse con modelos de embedding. Permitiendo indexar y recuperar información de forma eficiente, lo que hace eficiente la búsqueda semántica rápida y escalable. [3] 
+
+**Limitaciones de un chabot.**
+
+Dentro de esta prueba técnica se percibieron las siguientes limitaciones:
+
+Aunque los modelos han mejorado, comprender contextos complejos siguen siendo un desafío. Los chatbots pueden perder el hilo de la conversación. Los sesgos y limitaciones de los datos de entrenamiento pueden llevar a respuestas inadecuadas o parciales. En los entornos que son constantemente dinámicos o con información muy especializada, los chatbots pueden carecer de la capacidad de adaptarse a preguntas nuevas sin un reentrenamiento. [2]
+
 # Desarrollo
 
 La siguiente prueba técnica se llevó a cabo en **Azure**, utilizando los siguientes recursos:  
@@ -107,23 +128,6 @@ La siguiente prueba técnica se llevó a cabo en **Azure**, utilizando los sigui
   ![image](https://github.com/user-attachments/assets/df45b8d6-0664-4ad8-9afb-40808519cc56)
 Como podemos ver al aumentar la longitud de la pregunta disminuye el rendimiento del modelo de IA generativa, ademas de que no es capaz de contestar la pregunta en concreto.
 
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
 # Informe
 
 Dentro de un consultorio legal se busca optimizar la búsqueda de antecedentes y sentencias de los diversos casos que se les presenta, principalmente referente a temas de redes sociales. En la actualidad, los abogados hacen esta tarea de forma manual en una hoja de Excel para proporcionar detalles a sus clientes sobre las posibles demandas y penas que podrían estar enfrentando.
@@ -168,23 +172,26 @@ Existen diferentes tipos de abordar problemas en cuanto a datos se refiere.
 
 Para el caso de uso de esta prueba, se optó por la tercera opción.
 
-En la gestión de embeddings y la recuperación eficiente de documentos, se utilizó **Chroma DB**, una base de datos vectorial diseñada para almacenamiento y consulta de datos semánticos en aplicaciones de IA generativa (Chroma Team, 2023). [1]
+En la gestión de embeddings y la recuperación eficiente de documentos, se utilizó **Chroma DB**, una base de datos vectorial diseñada para almacenamiento y consulta de datos semánticos en aplicaciones de IA generativa (Chroma Team, 2023). [3]
 
 - Se creó un prototipo de chatbot que fuera capaz de:
   - Vectorizar los textos de las demandas y sentencias para facilitar la búsqueda semántica.
   - Realizar consultas a la base de datos vectorial con el fin de recuperar los documentos más relevantes.
-  - Generar la respuesta con un modelo de lenguaje que simplifica y contextualiza la información. Según OpenAI (2023), la incorporación de modelos de gran tamaño (Large Language Models) mejora significativamente la generación de texto coherente. [2]
+  - Generar la respuesta con un modelo de lenguaje que simplifica y contextualiza la información. Según OpenAI (2023), la incorporación de modelos de gran tamaño (Large Language Models) mejora significativamente la generación de texto coherente. [4]
  
-# Resultados del análisis de datos y de los modelos
-
+# Resultados del análisis de datos y de lo odelos
 - **Calidad de búsqueda semántica:**  
   Al indexar el contenido de los casos en una base de datos vectorial, se incrementó la precisión en la identificación de demandas similares o relacionadas.
 
 - **Respuestas en lenguaje natural:**  
-  El modelo generativo demostró ser capaz de reformular las sentencias y resúmenes en un lenguaje muy natural, tal como se requería. La librería Transformers de Hugging Face facilita la integración de modelos de lenguaje de vanguardia en múltiples tareas de procesamiento de lenguaje natural (Hugging Face, n.d.). [3]
+  El modelo generativo demostró ser capaz de reformular las sentencias y resúmenes en un lenguaje muy natural, tal como se requería. La librería Transformers de Hugging Face facilita la integración de modelos de lenguaje de vanguardia en múltiples tareas de procesamiento de lenguaje natural (Hugging Face, n.d.). [5]
 
 - **Desempeño:**  
   Para un conjunto de datos de tamaño modero, la latencia con la que responde fue aceptable. Sin embargo, en situaciones con más volumen de datos, sería necesario optimizar tanto la indexación como la generación de texto para mantener la eficacia de las respuestas.
+
+## Resultado Análisis de datos ##
+
+Se realizo un análisis de datos el cual esta dentro del repositorio llamado "Analisis_Sentencias.ipynb", los resultados fueron los siguientes: 
 
   ### Análisis de las sentencias recibidas por año
 
@@ -212,7 +219,7 @@ La nube de palabras muestra que los casos del despacho se enfocan en derechos fu
 
 ![image](https://github.com/user-attachments/assets/677e8325-398c-43cd-be7a-ce04a1803b2c)
 
-# Resultados del Análisis de los Datos y los Modelos
+# Resultados del Análisis de los Modelos
 
 ## Evaluación del Rendimiento del Sistema
 
@@ -249,7 +256,7 @@ Para mitigar este problema, se implementaron las siguientes soluciones:
 
 - **Límite de longitud en las respuestas:** Se ajustó el modelo para proporcionar respuestas más cortas y directas, evitando la sobrecarga de información innecesaria.
 - **Preprocesamiento de preguntas:** Se mejoró la extracción de IDs de sentencias para optimizar las búsquedas en ChromaDB.
-- **Mensajes en el frontend:** Se agregó un indicador de "Escribiendo..." mientras el backend procesa la consulta, mejorando la experiencia del usuario.
+- **Mensajes en el frontend:** Se agregó un indicador de Escribiendo... mientras el backend procesa la consulta, mejorando la experiencia del usuario.
 
 
 Los resultados obtenidos demuestran que la integración de ChromaDB y un modelo de IA generativa es una solución viable para responder preguntas sobre sentencias legales de manera eficiente. Sin embargo, se identificaron áreas de mejora, como:
@@ -287,12 +294,11 @@ En este informe se describe la solución propuesta para automatizar las consulta
 ---
 
 ## Referencias  
-
-[1] Chroma Team. (2023). *Chroma Documentation*. [https://docs.trychroma.com](https://docs.trychroma.com)  
-[2] OpenAI. (2023). *ChatGPT: Introducing a new language model*. OpenAI. [https://openai.com/blog/chatgpt](https://openai.com/blog/chatgpt)  
-[3] Hugging Face. (n.d.). *Transformers: State-of-the-art Machine Learning for PyTorch, TensorFlow, and JAX*. [https://huggingface.co/docs/transformers](https://huggingface.co/docs/transformers)  
-
-
+[1] Hugging Face AI. (s.f.). mBART-50 one to many multilingual machine translation. https://huggingface.co/facebook/mbart-large-50-one-to-many-mmt
+[2] IBM. (s.f.). Chatbot Limitations: Challenges and Considerations. https://www.ibm.com/mx-es/topics/chatbots
+[3] Chroma Team. (2023). *Chroma Documentation*. [https://docs.trychroma.com](https://docs.trychroma.com)  
+[4] OpenAI. (2023). *ChatGPT: Introducing a new language model*. OpenAI. [https://openai.com/blog/chatgpt](https://openai.com/blog/chatgpt)  
+[5] Hugging Face. (n.d.). *Transformers: State-of-the-art Machine Learning for PyTorch, TensorFlow, and JAX*. [https://huggingface.co/docs/transformers](https://huggingface.co/docs/transformers)  
 
 
 
