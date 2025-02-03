@@ -294,10 +294,15 @@ En este informe se describe la solución propuesta para automatizar las consulta
 ---
 
 ## Referencias  
+
 [1] Hugging Face AI. (s.f.). mBART-50 one to many multilingual machine translation. https://huggingface.co/facebook/mbart-large-50-one-to-many-mmt
+
 [2] IBM. (s.f.). Chatbot Limitations: Challenges and Considerations. https://www.ibm.com/mx-es/topics/chatbots
+
 [3] Chroma Team. (2023). *Chroma Documentation*. [https://docs.trychroma.com](https://docs.trychroma.com)  
+
 [4] OpenAI. (2023). *ChatGPT: Introducing a new language model*. OpenAI. [https://openai.com/blog/chatgpt](https://openai.com/blog/chatgpt)  
+
 [5] Hugging Face. (n.d.). *Transformers: State-of-the-art Machine Learning for PyTorch, TensorFlow, and JAX*. [https://huggingface.co/docs/transformers](https://huggingface.co/docs/transformers)  
 
 
