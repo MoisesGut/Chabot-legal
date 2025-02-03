@@ -1,3 +1,28 @@
+# Índice
+
+- [Chatbot de Sentencias Judiciales 📜](#chatbot-de-sentencias-judiciales-)
+  - [Características principales](#características-principales)
+  - [Tecnologías utilizadas](#tecnologías-utilizadas)
+- [Instalación y configuración](#instalación-y-configuración)
+- [PRUEBA TÉCNICA](#prueba-técnica)
+- [Investigación](#investigación)
+- [Desarrollo](#desarrollo)
+- [Informe](#informe)
+- [Supuestos](#supuestos)
+- [Formas para resolver el caso y la opción tomada en esta prueba](#formas-para-resolver-el-caso-y-la-opción-tomada-en-esta-prueba)
+- [Resultados del análisis de datos y de lo modelos](#resultados-del-análisis-de-datos-y-de-lo-modelos)
+  - [Resultado Análisis de datos](#resultado-análisis-de-datos)
+  - [Análisis de sentencias por mes](#análisis-de-sentencias-por-mes)
+  - [Resultado del análisis de los temas más comunes](#resultado-del-análisis-de-los-temas-más-comunes)
+  - [Análisis de la Nube de Palabras de los temas y síntesis de los casos](#análisis-de-la-nube-de-palabras-de-los-temas-y-síntesis-de-los-casos)
+- [Resultados del Análisis de los Modelos](#resultados-del-análisis-de-los-modelos)
+  - [Evaluación del Rendimiento del Sistema](#evaluación-del-rendimiento-del-sistema)
+  - [Análisis de la Precisión y Calidad de las Respuestas](#análisis-de-la-precisión-y-calidad-de-las-respuestas)
+- [Futuros Ajustes o Mejoras](#futuros-ajustes-o-mejoras)
+- [Apreciaciones y Comentarios del Caso](#apreciaciones-y-comentarios-del-caso)
+- [Conclusión](#conclusión)
+- [Referencias](#referencias)
+
 # Chatbot de Sentencias Judiciales 📜  
 
 Este chatbot está diseñado para responder preguntas sobre sentencias judiciales utilizando **FastAPI, ChromaDB y un modelo de lenguaje natural basado en transformers**. Su objetivo es proporcionar respuestas en **lenguaje claro y comprensible** para la mayoría de las personas, sin tecnicismos legales complejos.
@@ -154,7 +179,7 @@ En esta prueba de concepto, se requiere que la herramienta responda a:
 4. **Limitaciones**  
    - Al ser una implementación inicial, se requiere un volumen de datos más robusto y variado para mejorar la precisión del modelo.
 
-# Formas para resolver el caso y la opción tomada en esta prueba:
+# Formas para resolver el caso y la opción tomada en esta prueba
 
 Existen diferentes tipos de abordar problemas en cuanto a datos se refiere.
 
@@ -179,7 +204,7 @@ En la gestión de embeddings y la recuperación eficiente de documentos, se util
   - Realizar consultas a la base de datos vectorial con el fin de recuperar los documentos más relevantes.
   - Generar la respuesta con un modelo de lenguaje que simplifica y contextualiza la información. Según OpenAI (2023), la incorporación de modelos de gran tamaño (Large Language Models) mejora significativamente la generación de texto coherente. [4]
  
-# Resultados del análisis de datos y de lo odelos
+# Resultados del análisis de datos y de lo modelos
 - **Calidad de búsqueda semántica:**  
   Al indexar el contenido de los casos en una base de datos vectorial, se incrementó la precisión en la identificación de demandas similares o relacionadas.
 
