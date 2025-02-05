@@ -7,6 +7,7 @@
 - [PRUEBA TÉCNICA](#prueba-técnica)
 - [Investigación](#investigación)
 - [Desarrollo](#desarrollo)
+  -[Preguntas](#preguntas)
 - [Informe](#informe)
 - [Supuestos](#supuestos)
 - [Formas para resolver el caso y la opción tomada en esta prueba](#formas-para-resolver-el-caso-y-la-opción-tomada-en-esta-prueba)
@@ -129,7 +130,10 @@ La siguiente prueba técnica se llevó a cabo en **Azure**, utilizando los sigui
 - Verificamos que el servidor del back end este funcionando correctamente.
   ![image](https://github.com/user-attachments/assets/d66439f6-c72a-489d-aaf8-6ebdee95175e)
 - Verificamos que el servidor del front end este correcto.
-  ![image](https://github.com/user-attachments/assets/37fbcbce-719c-4a99-8aec-44853f6d7998)
+  ![image](https://github.com/user-attachments/assets/37fbcbce-719c-4a99-8aec-44853f6d7998
+  
+ ##  Preguntas##
+ 
 - Se hace la pregunta el servidor recibe la pregunta:
   ![image](https://github.com/user-attachments/assets/30fa7599-f491-46c0-99a5-39436ffc53d6)
 - El servidor del back end recibe la pregunta:
