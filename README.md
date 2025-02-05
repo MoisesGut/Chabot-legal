@@ -31,12 +31,12 @@ Este chatbot está diseñado para responder preguntas sobre sentencias judiciale
 ---
 
 ## Características principales  
-**Búsqueda de sentencias por ID**  
-**Respuestas en lenguaje natural, sin tecnicismos**  
-**Memoria conversacional**: recuerda sentencias consultadas recientemente  
-**Base de datos vectorial con ChromaDB** para respuestas más precisas  
-**Interfaz de usuario interactiva con React**  
-**Exposición del backend con Ngrok** para pruebas remotas  
+* **Búsqueda de sentencias por ID**  
+* **Respuestas en lenguaje natural, sin tecnicismos**  
+* **Memoria conversacional**: recuerda sentencias consultadas recientemente  
+* **Base de datos vectorial con ChromaDB** para respuestas más precisas  
+* **Interfaz de usuario interactiva con React**  
+* **Exposición del backend con Ngrok** para pruebas remotas  
 
 ---
 
